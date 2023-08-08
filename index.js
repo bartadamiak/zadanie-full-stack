@@ -1,10 +1,7 @@
 // build/index.js
 var form = document.querySelector("#form");
 var positionChosen = document.querySelector(".position-chosen");
-var positionList = document.querySelectorAll(".position-chosen-list");
 var testerPosition = document.querySelector(".position-tester");
-var developerPosition = document.querySelector(".position-developer");
-var pmPosition = document.querySelector(".position-pm");
 var firstName = document.querySelector("#name");
 var lastName = document.querySelector("#lastname");
 var email = document.querySelector("#email");
@@ -13,6 +10,8 @@ var desc = document.querySelector("#desc");
 var answer1 = document.querySelector("#answer1");
 var answer2 = document.querySelector("#answer2");
 var answer3 = document.querySelector("#answer3");
+var confirmation = document.querySelector(".confirmation");
+var confirmationButton = document.querySelector(".confirmation-button");
 position.addEventListener("change", function() {
   if (position.value == "tester") {
     positionChosen.classList.remove("hide");
@@ -111,14 +110,7 @@ form.addEventListener("submit", function(ev) {
   }
   const er = document.querySelectorAll(".error");
   if (er.length == 0) {
-    console.log(this.querySelector("#name").value);
-    console.log(this.querySelector("#lastname").value);
-    console.log(this.querySelector("#email").value);
-    console.log(this.querySelector("#desc").value);
-    console.log(this.querySelector("#position").value);
-    console.log(this.querySelector("#answer1").value);
-    console.log(this.querySelector("#answer2").value);
-    console.log(this.querySelector("#answer3").value);
+    confirmation.classList.toggle("hide");
     const newData = new FormData(this);
     fetch("server.php", {
       method: "POST",
@@ -131,5 +123,9 @@ form.addEventListener("submit", function(ev) {
       console.error(error);
     });
   }
+});
+confirmationButton.addEventListener("click", function(e) {
+  e.preventDefault;
+  confirmation.classList.toggle("hide");
 });
 //# sourceMappingURL=index.js.map

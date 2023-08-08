@@ -1,6 +1,7 @@
 <?php
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Odczytaj dane z formularza
+    
     $sentData = file_get_contents('php://input');
     $formData = json_decode($sentData, true);
 
@@ -19,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         header('Content-Type: application/json');
         echo json_encode($feedback);
     } else {
-        // Błąd w dekodowaniu JSON
+        
         http_response_code(400);
         $errorResponse = array('error' => 'Błędny format danych.');
         echo json_encode($errorResponse);
